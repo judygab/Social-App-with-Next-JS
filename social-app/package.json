@@ -1,0 +1,24 @@
+{
+  "name": "social-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@aws-amplify/auth": "^3.3.4",
+    "@aws-amplify/core": "^3.4.5",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@types/node": "^14.0.27",
+    "@types/react": "^16.9.45",
+    "aws-cognito-next": "^3.0.0",
+    "fontsource-roboto": "^3.0.3",
+    "next": "9.5.1",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "typescript": "^3.9.7"
+  }
+}
