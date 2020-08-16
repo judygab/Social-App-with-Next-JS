@@ -36,3 +36,19 @@ yarn-error.log*
 #next config files and keys
 next.config.js
 pems.json
+
+#amplify
+amplify/\#current-cloud-backend
+amplify/.config/local-*
+amplify/mock-data
+amplify/backend/
+amplify/team-provider-info.json
+build/
+dist/
+node_modules/
+aws-exports.js
+awsconfiguration.json
+amplifyconfiguration.json
+amplify-build-config.json
+amplify-gradle-config.json
+amplifytools.xcconfig
