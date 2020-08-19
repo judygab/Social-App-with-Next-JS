@@ -1,6 +1,7 @@
 import React from "react";
 import { AppProps } from "next/app";
-import awsConfig from "src/aws-exports";
+import Amplify from 'aws-amplify';
+import awsConfig from "../src/aws-exports";
 
 Amplify.configure(awsConfig);
 

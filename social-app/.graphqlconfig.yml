@@ -1,0 +1,15 @@
+projects:
+  socialapp:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - 'y'
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: typescript
+        generatedFileName: src/API.ts
+        docsFilePath: src/graphql
+extensions:
+  amplify:
+    version: 3
