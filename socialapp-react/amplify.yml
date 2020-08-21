@@ -1,0 +1,23 @@
+version: 1
+applications:
+  - backend: 
+      phases:
+        build:
+          commands:
+            - amplifyPush --simple
+  - frontend:
+      phases:
+        preBuild:
+          commands:
+            - npm install
+        build:
+          commands:
+            - npm run-script build
+      artifacts:
+        baseDirectory: build
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*
+    appRoot: socialapp-react
