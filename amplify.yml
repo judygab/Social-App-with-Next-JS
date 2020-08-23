@@ -1,11 +1,11 @@
 version: 1
 applications:
-  - backend: 
+  backend:
       phases:
         build:
           commands:
             - amplifyPush --simple
-  - frontend:
+  frontend:
       phases:
         preBuild:
           commands:
@@ -20,4 +20,4 @@ applications:
       cache:
         paths:
           - node_modules/**/*
-    appRoot: socialapp-react
+  appRoot: socialapp-react
