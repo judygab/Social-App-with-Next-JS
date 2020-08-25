@@ -141,6 +141,7 @@ function App() {
           className={clsx(classes.appBar, {
             [classes.appBarShift]: open,
           })}
+          color="white"
         >
           <Toolbar>
             <IconButton
