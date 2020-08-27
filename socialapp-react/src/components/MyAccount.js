@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -21,6 +21,7 @@ import PinterestIcon from "@material-ui/icons/Pinterest";
 import RedditIcon from "@material-ui/icons/Reddit";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { API } from 'aws-amplify';
+import { getUserByUserName } from '../graphql/queries';
 
 const useStyles = makeStyles((theme) => ({
   layout: {
@@ -81,12 +82,21 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AddressForm() {
   const { user } = React.useContext(UserContext);
+
+  const [userInfo, setUserInfo] = useState(null);
+
   const classes = useStyles();
 
-  // async function fetchUserByUserName() {
-  //   const apiData = await API.graphql({ query: listNotes });
-  //   setNotes(apiData.data.listNotes.items);
-  // }
+  useEffect(() => {
+
+  }, []);
+
+  async function fetchUserByUserName() {
+    if(user) {
+      const apiData = await API.graphql({ query: getUserByUserName, variables: { input: user.username} });
+      setUserInfo('');
+    }
+  }
 
   return (
     <main className={classes.layout}>
