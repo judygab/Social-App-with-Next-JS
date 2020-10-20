@@ -20,6 +20,8 @@ import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import PinterestIcon from "@material-ui/icons/Pinterest";
 import RedditIcon from "@material-ui/icons/Reddit";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
+import Button from '@material-ui/core/Button';
+import useForm from '../hooks/useForm';
 import { API } from 'aws-amplify';
 import { getUserByUserName } from '../graphql/queries';
 
@@ -82,6 +84,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AddressForm() {
   const { user } = React.useContext(UserContext);
+  const { values, handleChange, handleSubmit } = useForm();
+  console.log(user);
 
   const [userInfo, setUserInfo] = useState(null);
 
@@ -120,6 +124,8 @@ export default function AddressForm() {
                 id="firstName"
                 name="firstName"
                 label="First name"
+                value={values.firstName}
+                onChange={handleChange}
                 fullWidth
                 autoComplete="given-name"
               />
@@ -130,6 +136,8 @@ export default function AddressForm() {
                 id="lastName"
                 name="lastName"
                 label="Last name"
+                value={values.lastName}
+                onChange={handleChange}
                 fullWidth
                 autoComplete="family-name"
               />
@@ -139,6 +147,8 @@ export default function AddressForm() {
                 id="email"
                 name="email"
                 label="email"
+                value={values.email}
+                onChange={handleChange}
                 fullWidth
                 autoComplete="email email-url"
               />
@@ -148,9 +158,10 @@ export default function AddressForm() {
                 <InputLabel htmlFor="outlined-adornment-amount">Facebook</InputLabel>
                 <OutlinedInput
                   id="facebook"
-                  value={''}
+                  name="facebook"
+                  value={values.facebook}
+                  onChange={handleChange}
                   autoComplete="facebook facebook-url"
-                  //onChange={handleChange('amount')}
                   startAdornment={<InputAdornment position="start"><FacebookIcon style={{ color: '3b5998'}}/></InputAdornment>}
                   labelWidth={60}
                 />
@@ -161,9 +172,10 @@ export default function AddressForm() {
                 <InputLabel htmlFor="outlined-adornment-amount">Instagram</InputLabel>
                 <OutlinedInput
                   id="instagram"
-                  value={''}
+                  name="instagram"
+                  value={values.instagram}
+                  onChange={handleChange}
                   autoComplete="instagram instagram-url"
-                  //onChange={handleChange('amount')}
                   startAdornment={<InputAdornment position="start"><InstagramIcon style={{ color: 'e4405f'}}/></InputAdornment>}
                   labelWidth={60}
                 />
@@ -174,9 +186,10 @@ export default function AddressForm() {
                 <InputLabel htmlFor="outlined-adornment-amount">YouTube</InputLabel>
                 <OutlinedInput
                   id="youtube"
-                  value={''}
+                  name="youtube"
+                  value={values.youtube}
+                  onChange={handleChange}
                   autoComplete="youtube youtube-url"
-                  //onChange={handleChange('amount')}
                   startAdornment={<InputAdornment position="start"><YouTubeIcon style={{ color: 'cd201f'}}/></InputAdornment>}
                   labelWidth={60}
                 />
@@ -187,9 +200,10 @@ export default function AddressForm() {
                 <InputLabel htmlFor="outlined-adornment-amount">Twitter</InputLabel>
                 <OutlinedInput
                   id="twitter"
-                  value={''}
+                  name="twitter"
+                  value={values.twitter}
+                  onChange={handleChange}
                   autoComplete="twitter twitter-url"
-                  //onChange={handleChange('amount')}
                   startAdornment={<InputAdornment position="start"><TwitterIcon style={{ color: '55acee'}}/></InputAdornment>}
                   labelWidth={60}
                 />
@@ -200,9 +214,10 @@ export default function AddressForm() {
                 <InputLabel htmlFor="outlined-adornment-amount">LinkedIn</InputLabel>
                 <OutlinedInput
                   id="linkedin"
-                  value={''}
+                  name="linkedin"
+                  value={values.linkedin}
+                  onChange={handleChange}
                   autoComplete="linkedin linkedin-url"
-                  //onChange={handleChange('amount')}
                   startAdornment={<InputAdornment position="start"><LinkedInIcon style={{ color: '0077B5'}}/></InputAdornment>}
                   labelWidth={60}
                 />
@@ -213,9 +228,10 @@ export default function AddressForm() {
                 <InputLabel htmlFor="outlined-adornment-amount">Pinterest</InputLabel>
                 <OutlinedInput
                   id="pinterest"
-                  value={''}
+                  name="pinterest"
+                  value={values.pinterest}
+                  onChange={handleChange}
                   autoComplete="pinterest pinterest-url"
-                  //onChange={handleChange('amount')}
                   startAdornment={<InputAdornment position="start"><PinterestIcon style={{ color: 'bd081c'}}/></InputAdornment>}
                   labelWidth={60}
                 />
@@ -226,9 +242,10 @@ export default function AddressForm() {
                 <InputLabel htmlFor="outlined-adornment-amount">Reddit</InputLabel>
                 <OutlinedInput
                   id="reddit"
-                  value={''}
+                  name="reddit"
+                  value={values.reddit}
+                  onChange={handleChange}
                   autoComplete="reddit reddit-url"
-                  //onChange={handleChange('amount')}
                   startAdornment={<InputAdornment position="start"><RedditIcon style={{ color: 'ff5700'}}/></InputAdornment>}
                   labelWidth={60}
                 />
@@ -242,6 +259,9 @@ export default function AddressForm() {
                 control={<Checkbox required color="secondary" name="saveAddress" value="yes" />}
                 label="Privacy Policy"
               />
+            </Grid>
+            <Grid item xs={12}>
+              <Button variant="contained" color="primary">SUBMIT</Button>
             </Grid>
           </Grid>
         </React.Fragment>
