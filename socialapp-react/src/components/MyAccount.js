@@ -19,8 +19,10 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import PinterestIcon from "@material-ui/icons/Pinterest";
 import RedditIcon from "@material-ui/icons/Reddit";
+import PhoneIcon from '@material-ui/icons/Phone';
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import Button from '@material-ui/core/Button';
+import validate from '../utils/SignUpFormValidationRules';
 import useForm from '../hooks/useForm';
 import { API } from 'aws-amplify';
 import { getUserByUserName } from '../graphql/queries';
@@ -84,8 +86,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AddressForm() {
   const { user } = React.useContext(UserContext);
-  const { values, handleChange, handleSubmit } = useForm();
-  console.log(user);
+  const {
+    values,
+    handleChange,
+    handleSubmit,
+    errors,
+  } = useForm( () => {console.log('signing up')}, validate);
 
   const [userInfo, setUserInfo] = useState(null);
 
@@ -124,11 +130,15 @@ export default function AddressForm() {
                 id="firstName"
                 name="firstName"
                 label="First name"
-                value={values.firstName}
+                value={values.firstName || ''}
                 onChange={handleChange}
+                error={values.firstName || false}
                 fullWidth
                 autoComplete="given-name"
               />
+              {errors.firstName && (
+                <p className="help is-danger">{errors.firstName}</p>
+              )}
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -136,22 +146,30 @@ export default function AddressForm() {
                 id="lastName"
                 name="lastName"
                 label="Last name"
-                value={values.lastName}
+                value={values.lastName || ''}
                 onChange={handleChange}
+                error={values.lastName || false}
                 fullWidth
                 autoComplete="family-name"
               />
+              {errors.lastName && (
+                <p className="help is-danger">{errors.lastName}</p>
+              )}
             </Grid>
             <Grid item xs={12}>
               <TextField
                 id="email"
                 name="email"
                 label="email"
-                value={values.email}
+                value={values.email || ''}
                 onChange={handleChange}
+                error={values.email || false}
                 fullWidth
                 autoComplete="email email-url"
               />
+              {errors.email && (
+                <p className="help is-danger">{errors.email}</p>
+              )}
             </Grid>
             <Grid item xs={12}>
               <FormControl fullWidth variant="outlined">
@@ -159,7 +177,7 @@ export default function AddressForm() {
                 <OutlinedInput
                   id="facebook"
                   name="facebook"
-                  value={values.facebook}
+                  value={values.facebook || ''}
                   onChange={handleChange}
                   autoComplete="facebook facebook-url"
                   startAdornment={<InputAdornment position="start"><FacebookIcon style={{ color: '3b5998'}}/></InputAdornment>}
@@ -173,7 +191,7 @@ export default function AddressForm() {
                 <OutlinedInput
                   id="instagram"
                   name="instagram"
-                  value={values.instagram}
+                  value={values.instagram || ''}
                   onChange={handleChange}
                   autoComplete="instagram instagram-url"
                   startAdornment={<InputAdornment position="start"><InstagramIcon style={{ color: 'e4405f'}}/></InputAdornment>}
@@ -187,7 +205,7 @@ export default function AddressForm() {
                 <OutlinedInput
                   id="youtube"
                   name="youtube"
-                  value={values.youtube}
+                  value={values.youtube || ''}
                   onChange={handleChange}
                   autoComplete="youtube youtube-url"
                   startAdornment={<InputAdornment position="start"><YouTubeIcon style={{ color: 'cd201f'}}/></InputAdornment>}
@@ -201,7 +219,7 @@ export default function AddressForm() {
                 <OutlinedInput
                   id="twitter"
                   name="twitter"
-                  value={values.twitter}
+                  value={values.twitter || ''}
                   onChange={handleChange}
                   autoComplete="twitter twitter-url"
                   startAdornment={<InputAdornment position="start"><TwitterIcon style={{ color: '55acee'}}/></InputAdornment>}
@@ -215,7 +233,7 @@ export default function AddressForm() {
                 <OutlinedInput
                   id="linkedin"
                   name="linkedin"
-                  value={values.linkedin}
+                  value={values.linkedin || ''}
                   onChange={handleChange}
                   autoComplete="linkedin linkedin-url"
                   startAdornment={<InputAdornment position="start"><LinkedInIcon style={{ color: '0077B5'}}/></InputAdornment>}
@@ -229,7 +247,7 @@ export default function AddressForm() {
                 <OutlinedInput
                   id="pinterest"
                   name="pinterest"
-                  value={values.pinterest}
+                  value={values.pinterest || ''}
                   onChange={handleChange}
                   autoComplete="pinterest pinterest-url"
                   startAdornment={<InputAdornment position="start"><PinterestIcon style={{ color: 'bd081c'}}/></InputAdornment>}
@@ -243,7 +261,7 @@ export default function AddressForm() {
                 <OutlinedInput
                   id="reddit"
                   name="reddit"
-                  value={values.reddit}
+                  value={values.reddit || ''}
                   onChange={handleChange}
                   autoComplete="reddit reddit-url"
                   startAdornment={<InputAdornment position="start"><RedditIcon style={{ color: 'ff5700'}}/></InputAdornment>}
@@ -252,7 +270,18 @@ export default function AddressForm() {
               </FormControl>
             </Grid>
             <Grid item xs={12}>
-              <TextField id="phone" name="phone" label="phone number" fullWidth />
+              <FormControl fullWidth variant="outlined">
+                <InputLabel htmlFor="outlined-adornment-amount">Phone Number</InputLabel>
+                <OutlinedInput
+                  id="phone"
+                  name="phone"
+                  value={values.phone || ''}
+                  onChange={handleChange}
+                  autoComplete="phone phone-number"
+                  startAdornment={<InputAdornment position="start"><PhoneIcon/></InputAdornment>}
+                  labelWidth={60}
+                />
+              </FormControl>
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
